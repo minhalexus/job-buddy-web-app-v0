@@ -1,21 +1,71 @@
+
 <!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<div *ngIf="documents">
+  Content to render when condition is true.
+
+  <ul>
+      <li *ngFor="let document of documents">
+        {{ document?._id }} <br>
+        {{ document?.name }} <br>
+        {{ document?.position }} <br>
+        {{ document?.address }} <br>
+        <a [routerLink]="" (click)="download(document)">download</a>
+      </li>
+  </ul>
+</div>
+
+
+
+
+<hr>
+
+
+<h3>New Document</h3>
+
+<!-- <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  
+    <label>
+      Name:
+      <input type="text" formControlName="name" required>
+    </label>
+  
+    <label>
+      Position:
+      <input type="text" formControlName="position" required>
+    </label>
+
+    <label>
+        Address:
+        <input type="text" formControlName="address" required>
+    </label>
+
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button>   
+  
+</form> -->
+
+<form class="example-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Name" formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Position" formControlName="position">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Address" formControlName="address">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" [disabled]="!profileForm.valid">Submit</button>   
+
+  </form>
+
+</div>
 <router-outlet></router-outlet>
